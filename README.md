@@ -1,3 +1,17 @@
 # anydoor_lowcode_materials
 
-任意门乐高平台物料
+一个面向 PC 的业务组件库
+
+## 调试
+启动调试
+
+```
+npm run lowcode:dev             # 打开开发环境，运行所有组件
+```
+
+构建
+
+```
+npm run lowcode:build
+```
+
