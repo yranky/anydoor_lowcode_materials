@@ -1,6 +1,6 @@
 {
   "name": "anydoor_lowcode_materials",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "任意门乐高平台物料",
   "main": "lib/index.js",
   "module": "es/index.js",

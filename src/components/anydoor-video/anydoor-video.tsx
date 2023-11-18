@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as React from 'react';
 import { createElement } from 'react';
 import './index.scss';
@@ -59,9 +60,12 @@ const AnydoorVideo: React.FC<AnydoorVideoProps> = ({ ...otherprops }) => {
     }, [otherprops])
 
     return (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        <div id={uuid} {...otherprops} />
+        <div {...otherprops}>
+            {/* @ts-ignore */}
+            <div id={uuid} />
+            {/* @ts-ignore */}
+        </div>
     )
 }
 
@@ -93,6 +97,7 @@ function loadPlayer(player: any, id, config: AnydoorVideoProps): Player {
         "x5-video-player-fullscreen": config.x5VideoPlayerFullscreen,
         'x5-video-orientation': config.x5VideoOrientation,
         plugins,
+        fluid: true,
         commonStyle: {
             progressColor: config.progressColor,
             playedColor: config.playedColor,
