@@ -9,7 +9,7 @@ cache:
 stages:
   - install
   - build
-  # - deploy
+  - deploy
 
 install:
   stage: install
@@ -22,13 +22,13 @@ build:
     - export NODE_OPTIONS=--openssl-legacy-provider
     - $BUILD_SHELL
     - ls
-# pages:
-#   stage: deploy
-#   script:
-#     - rm -rf public/*
-#     - mkdir public
-#     - mv build/* public
-#     - cp public/index.html public/404.html
-#   artifacts:
-#     paths:
-#       - public
+pages:
+  stage: deploy
+  script:
+    - rm -rf public/*
+    - mkdir public
+    - mv build/* public
+    - cp public/index.html public/404.html
+  artifacts:
+    paths:
+      - public
