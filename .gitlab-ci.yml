@@ -1,0 +1,34 @@
+variables:
+  BUILD_SHELL: 'yarn lowcode:build'
+
+cache:
+  paths:
+    - node_modules/
+    - build/
+
+stages:
+  - install
+  - build
+  # - deploy
+
+install:
+  stage: install
+  script:
+    - 'yarn install'
+
+build:
+  stage: build
+  script:
+    - export NODE_OPTIONS=--openssl-legacy-provider
+    - $BUILD_SHELL
+    - ls
+# pages:
+#   stage: deploy
+#   script:
+#     - rm -rf public/*
+#     - mkdir public
+#     - mv build/* public
+#     - cp public/index.html public/404.html
+#   artifacts:
+#     paths:
+#       - public
