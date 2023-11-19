@@ -1,5 +1,9 @@
 variables:
   BUILD_SHELL: 'yarn lowcode:build'
+  OBJ_SAPCE: 'anydoor-static-cdn'
+  BASE_PATH: 'lowcode'
+  SKIP_FIXED_STRINGS: '.html'
+  SKIP_FILE_PREFIXES: 'preview.js,index.js,preview.css,preview.js'
 
 cache:
   paths:
@@ -10,6 +14,7 @@ stages:
   - install
   - build
   - deploy
+  - upload
 
 install:
   stage: install
@@ -31,3 +36,9 @@ pages:
   artifacts:
     paths:
       - public
+upload:
+   stage: upload
+   script:
+    - export PROJECT_VERSION=$(node -e "console.log(require('./package.json').version)")
+    - export PROJECT_NAME=$(node -e "console.log(require('./package.json').name)")
+    - qshell qupload2 --bucket=$OBJ_SAPCE --src-dir=public/lowcode --key-prefix=$BASE_PATH/$PROJECT_NAME@$PROJECT_VERSION/ --skip-fixed-strings=$SKIP_FIXED_STRINGS --skip-file-prefixes=$SKIP_FILE_PREFIXES
